@@ -1,3 +1,4 @@
+// Emily Vo and Dhwani Patel
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -11,14 +12,14 @@ using namespace std;
 struct Song
 {
     string title;
-    int time; // could also be a string
+    string time; // could also be a string
 };
 
 struct Album
 {
-    map<int, Song> songs;
+    map<string, Song> songs;
     string name;
-    int time;
+    int time = 0;
     int nsongs; // optional variable but makes it easier
 };
 
@@ -26,12 +27,12 @@ struct Artist
 {
     map<string, Album> albums;
     string name;
-    int time;
+    int time = 0;
     int nsongs;
 };
 
 
-/*void time(string &line)
+void time(string &line)
 {
     int min = 0, sec = 0;
     for (int i = 0; i < line.size(); i++)
@@ -46,34 +47,64 @@ struct Artist
         }
         cout << setfill('0') << setw(2) << min << " " << sec << endl << endl;
     }
-}*/
+}
 
 int main(int argc, char *argv[])
 {
-    string line, title, time, artist, album, genre, track;
+    string line, nTitle, nArtist, nAlbum, nGenre, nTrack;
     map <string, Artist> artists;
-    map <string, Artist> artists::iterator artist_it;
-    map<string, Album> album;
-    map<string, Album> album::iterator album_it;
+	map <string, Artist>::iterator artist_it;
+	map <int, Song>::iterator song_it;
+	map <string, Album>::iterator album_it;
+
+
 
     while(getline(cin, line))
     {
-        replace(line.begin(), line.end(), '_', ' ');
+//        replace(line.begin(), line.end(), '_', ' ');
 
+		//reading in the input as strings
         stringstream ss(line);
-        ss >> title >> time >> artist >> album >> genre >> track;
-        cout << title << " " << time << " " << artist << " " << album << " " << genre << " " << track << endl;
+		replace(line.begin(), line.end(), '_', ' ');
 
-        /*ss if (artists.insert(pair).second)
-        {
-        }
-        else
-        {
-        }
+        ss >> nTitle >> nTime >> nArtist >> nAlbum >> nGenre >> nTrack;
+		
+		Song cSong;
 
-        chunks(line);
-        time(line);*/
+		cSong.title = nTitle;
+		cSong.time = nTime;
+
+		//check if the artist exists in the map 'artists'
+		
+		artist_it = artist.find(nArtist);
+		if(artist_it == artist.end()){
+			
+			Artist cArtist;
+
+			cArtist.name = nArtist;
+			cArtist.time = 0;
+
+			artist.insert(pair<cArtist.name, cArtist>);
+			
+		}
+		else{
+			album_it = album.find(nAlbum);
+	        if(album_it == album.end()){
+
+		        Album cAlbum;
+
+			    cAlbum.name = nAlbum;
+				cAlbum.time = 0;
+				album.insert(pair<cAlbum.name, cAlbum>);
+
+			}
+
+		}
+		
+		song.insert(pair<cSong.time, cSong>);
+
+
     }
 
     return 0;
-}t l
+}
